@@ -5,7 +5,12 @@ const titleInput = props => {
         <div>
             <h1>Title Input: </h1>
             <form>
-                <input placeholder='Enter Title'/>
+                <input
+                    name='title' 
+                    placeholder='Enter Title'
+                    value={props.author}
+                    onChange={props.handleChange}
+                />
             </form>
         </div>
     );

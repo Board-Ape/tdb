@@ -14,11 +14,26 @@ class App extends Component {
     }
   }
 
+  handleChange = (event) => {
+    const {name, value} = event.target
+
+    this.setState({
+      [name]: value
+    })
+  }
+
   render() {
     return (
       <div className="App">
-        <TitleInput />
-        <AuthorInput />
+        <TitleInput
+          handleChange={this.handleChange}
+          title={this.state.title}
+        />
+        <AuthorInput
+          handleChange={this.handleChange}
+          author={this.state.author}
+        />
+        <button>SAVE BOOKS</button>
         <BooksContainer />
       </div>
     );
