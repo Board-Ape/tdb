@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import TitleInput from './TitleInput/TitleInput';
 import AuthorInput from './AuthorInput/AuthorInput';
-import BooksContainer from './BooksContainer/BooksContainer';
+import BookSearchContainer from "./BookSearchContainer/BookSearchContainer";
 
 class App extends Component {
   constructor(props) {
@@ -10,7 +10,11 @@ class App extends Component {
     this.state = {
       title: '',
       author: '',
-      books: []
+      books: [
+        {'title': 'Create', 'author': 'Johnson Murphy'},
+        {'title': 'Make', 'author': 'Cramin Turf'},
+        {'title': 'Find', 'author': 'Joe Bond'}
+      ]
     }
   }
 
@@ -19,6 +23,18 @@ class App extends Component {
 
     this.setState({
       [name]: value
+    })
+  }
+
+  submitBooks = (event) => {
+    event.preventDefault()
+    const {title, author} = this.state
+
+    const titleAndAuthor = { 'title': title, 'author': author}
+    const newState = [...this.state.books, titleAndAuthor]
+
+    this.setState({
+      books: newState
     })
   }
 
@@ -33,8 +49,10 @@ class App extends Component {
           handleChange={this.handleChange}
           author={this.state.author}
         />
-        <button>SAVE BOOKS</button>
-        <BooksContainer />
+        <button onClick={this.submitBooks}>SAVE BOOKS</button>
+        <div className='booksContainer'>
+          <BookSearchContainer books={this.state.books} />
+        </div>
       </div>
     );
   }
