@@ -8,14 +8,27 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      title: '',
-      author: '',
+      title: null,
+      author: null,
       books: [
         {'title': 'Create', 'author': 'Johnson Murphy'},
         {'title': 'Make', 'author': 'Cramin Turf'},
         {'title': 'Find', 'author': 'Joe Bond'}
       ]
     }
+  }
+
+  resetDefaultBooks = (event) => {
+    event.preventDefault()
+    const originalState = [
+      { 'title': 'Create', 'author': 'Johnson Murphy'},
+      { 'title': 'Make', 'author': 'Cramin Turf'},
+      { 'title': 'Find', 'author': 'Joe Bond'}
+    ]
+
+    this.setState({
+      books: originalState
+    })
   }
 
   handleChange = (event) => {
@@ -39,6 +52,9 @@ class App extends Component {
   }
 
   render() {
+    let resetIsActive = this.state.books.length <= 3 ? true : false
+    let inputIsActive = !this.state.title || !this.state.author ? true : false
+
     return (
       <div className="App">
         <TitleInput
@@ -49,8 +65,15 @@ class App extends Component {
           handleChange={this.handleChange}
           author={this.state.author}
         />
-        <button onClick={this.submitBooks}>SAVE BOOKS</button>
-        <div className='booksContainer'>
+        <button 
+          onClick={this.submitBooks} 
+          disabled={inputIsActive}
+        >SAVE BOOKS</button>
+        <button
+          onClick={this.resetDefaultBooks}
+          disabled={resetIsActive}
+        >RESET BOOKS</button>
+        <div className="booksContainer">
           <BookSearchContainer books={this.state.books} />
         </div>
       </div>
