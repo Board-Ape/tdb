@@ -3,6 +3,7 @@ import './App.css';
 import TitleInput from './TitleInput/TitleInput';
 import AuthorInput from './AuthorInput/AuthorInput';
 import BookSearchContainer from "./BookSearchContainer/BookSearchContainer";
+import BookResultsContainer from "./BookResultsContainer/BookResultsContainer";
 
 class App extends Component {
   constructor(props) {
@@ -76,6 +77,7 @@ class App extends Component {
         <div className="booksContainer">
           <BookSearchContainer books={this.state.books} />
         </div>
+        <BookResultsContainer />
       </div>
     );
   }
