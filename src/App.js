@@ -9,8 +9,8 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      title: null,
-      author: null,
+      title: '',
+      author: '',
       books: [
         {'title': 'Create', 'author': 'Johnson Murphy'},
         {'title': 'Make', 'author': 'Cramin Turf'},
