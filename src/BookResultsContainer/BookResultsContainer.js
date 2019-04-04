@@ -58,7 +58,10 @@ class BookResultContainer extends Component {
             )
         } else {
             searchArea = (
-                <img src={spinner} alt="loading..." />
+                <div>
+                    <h1>Loading...</h1>
+                    <img src={spinner} alt="loading..." />
+                </div>
             )
         }
 
